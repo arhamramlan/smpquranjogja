@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <title>SMP Qur'an Al Wahdah Yogyakarta</title>
 
 <style>
@@ -28,6 +29,7 @@ nav {
   width: 100%;
   top: 0;
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  z-index: 1;
 }
 
 nav h1 {
@@ -47,38 +49,123 @@ nav a:hover {
 
 /* HERO */
 .hero {
+  position: relative;
   height: 100vh;
+  background: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-  background: linear-gradient(to right, #065f46, #047857);
   color: white;
+  text-align: center;
+  overflow: hidden;
+  z-index: 9999;
+  margin-bottom: 50px;
 }
 
-.hero h2 {
-  font-size: 42px;
+.hero-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(6,95,70,0.9), rgba(4,120,87,0.8));
+  top: 0;
+  left: 0;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  animation: fadeUp 1s ease;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
   margin-bottom: 15px;
 }
 
+.hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+.hero h2 span {
+  background: linear-gradient(to right, #a7f3d0, #6ee7b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Playfair Display', serif;
+}
+
 .hero p {
+  margin: 20px 0;
   font-size: 18px;
-  margin-bottom: 25px;
+  color: #e5e7eb;
+}
+
+.hero-buttons {
+  margin-top: 20px;
 }
 
 .btn {
-  padding: 12px 28px;
-  background: white;
-  color: #065f46;
+  padding: 12px 25px;
   border-radius: 30px;
   text-decoration: none;
-  font-weight: bold;
+  margin: 5px;
+  display: inline-block;
   transition: 0.3s;
 }
 
-.btn:hover {
+.btn.primary {
+  background: white;
+  color: #065f46;
+  font-weight: bold;
+}
+
+.btn.primary:hover {
   background: #d1fae5;
+}
+
+.btn.secondary {
+  border: 1px solid white;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background: white;
+  color: #065f46;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.hero-stats h3 {
+  font-size: 24px;
+}
+
+.hero-stats p {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+/* ANIMASI */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* SECTION */
@@ -86,19 +173,46 @@ section {
   padding: 80px 60px;
 }
 
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
+}
+
 .section-title {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  position: relative;
 }
 
 .section-title h3 {
-  font-size: 28px;
-  color: #065f46;
+  font-size: 32px;
+  color: #064e3b;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Garis elegan bawah */
+.section-title h3::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 3px;
+  margin: 10px auto 0;
+  background: linear-gradient(to right, transparent, #10b981, transparent);
+  border-radius: 5px;
+}
+
+/* Efek glow halus */
+.section-title h3:hover {
+  color: #047857;
+  transition: 0.3s;
+  letter-spacing: 2px;
 }
 
 /* ABOUT */
 .about {
-  max-width: 900px;
+  max-width: 580px;
   margin: auto;
   text-align: center;
   line-height: 1.7;
@@ -123,6 +237,11 @@ section {
   transform: translateY(-5px);
 }
 
+.card h4 {
+  margin-bottom: 10px;
+
+}
+
 /* CTA */
 .cta {
   text-align: center;
@@ -131,12 +250,304 @@ section {
   padding: 60px 20px;
 }
 
+/* TIMELINE */
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  z-index: 0;
+}
+
+/* garis penghubung */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 5%;
+  width: 90%;
+  height: 3px;
+  background: linear-gradient(to right, #10b981, #6ee7b7);
+  z-index: 0;
+}
+
+/* tiap step */
+.step {
+  flex: 1;
+  min-width: 220px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* lingkaran nomor */
+.circle {
+  width: 60px;
+  height: 60px;
+  background: white;
+  border: 3px solid #10b981;
+  color: #065f46;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+/* efek hover */
+.step:hover .circle {
+  background: #10b981;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* judul step */
+.step h4 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #064e3b;
+}
+
+/* deskripsi */
+.step p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+@media(max-width: 768px) {
+  .timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline::before {
+    display: none;
+  }
+}
+
+/* TESTIMONI */
+/* TESTIMONI */
+.testimoni-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* card */
+.testimoni-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  position: relative;
+  transition: 0.3s;
+}
+
+.testimoni-card::before {
+  content: "“";
+  font-size: 60px;
+  color: #10b981;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  opacity: 0.2;
+}
+
+/* efek hover */
+.testimoni-card:hover {
+  transform: translateY(-8px);
+}
+
+/* kutipan */
+.testimoni-card p {
+  font-style: italic;
+  color: #374151;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* user */
+.user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.user h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #065f46;
+}
+
+.user span {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* BERITA */
+.berita-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* card */
+.berita-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.berita-card img {
+  transition: 0.4s;
+}
+
+.berita-card:hover img {
+  transform: scale(1.05);
+}
+
+/* hover efek */
+.berita-card:hover {
+  transform: translateY(-8px);
+}
+
+/* gambar */
+.berita-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* konten */
+.berita-content {
+  padding: 20px;
+}
+
+/* tag */
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+/* judul */
+.berita-content h4 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #064e3b;
+}
+
+/* deskripsi */
+.berita-content p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
 /* FOOTER */
 footer {
+  background: #111827;
+  color: #d1d5db;
+  padding-top: 60px;
+}
+
+/* container */
+.footer-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr; /* 2/5 : 1/5 : 1/5 */
+  gap: 40px;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+/* kolom */
+.footer-col h2,
+.footer-col h3 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.footer-col p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* menu */
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-col ul li a:hover {
+  color: #10b981;
+}
+
+/* social */
+.footer-social {
+  margin-top: 15px;
+}
+
+.footer-social a {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #9ca3af;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  color: #10b981;
+}
+
+/* bottom */
+.footer-bottom {
   text-align: center;
   padding: 20px;
-  background: #111827;
-  color: #9ca3af;
+  margin-top: 40px;
+  border-top: 1px solid #1f2937;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 25px;
 }
 
 </style>
@@ -146,20 +557,52 @@ footer {
 
 <!-- NAVBAR -->
 <nav>
-  <h1>Al Wahdah</h1>
+  <h1>SMP Qur'an Al Wahdah</h1>
   <div>
-    <a href="#tentang">Tentang</a>
-    <a href="#program">Program</a>
-    <a href="#kontak">Kontak</a>
+    <a href="#tentang">Tentang</a></li>
+    <a href="#program">Program</a></li>
+    <a href="#perjalanan">Pendaftaran</a></li>
+    <a href="#berita">Berita</a></li>
+    <a href="#testimoni">Testimoni</a></li>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div>
-    <h2>SMP Qur’an Al Wahdah Yogyakarta</h2>
-    <p>Mencetak Generasi Qur’ani Beradab, Cerdas, dan Berprestasi</p>
-    <a href="#kontak" class="btn">Daftar Sekarang</a>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <span class="badge">Penerimaan Murid Baru 2026</span>
+
+    <h2>
+      Mencetak Generasi Qur'ani<br>
+      <span>Religius & Unggul</span>
+    </h2>
+
+    <p>
+      SMP Qur’an Al Wahdah Yogyakarta menghadirkan pendidikan berbasis 
+      Al-Qur’an, adab, dan akademik unggul.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#kontak" class="btn primary">Daftar Sekarang</a>
+      <a href="#tentang" class="btn secondary">Pelajari Lebih</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <h3>100+</h3>
+        <p>Murid Aktif</p>
+      </div>
+      <div>
+        <h3>10+</h3>
+        <p>Pengajar</p>
+      </div>
+      <div>
+        <h3>5+</h3>
+        <p>Program Unggulan</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -184,20 +627,20 @@ footer {
   </div>
   <div class="features">
     <div class="card">
-      <h4>Tahfidz Al-Qur’an</h4>
-      <p>Target hafalan yang terukur dengan pembinaan intensif.</p>
+      <h4>Tahfidz Al-Qur’an Pengajar Bersanad</h4>
+      <p>Pembelajaran Al-Qur’an dengan bimbingan guru bersanad, sehingga bacaan dan hafalan murid terjaga kualitasnya.</p>
     </div>
     <div class="card">
-      <h4>Bahasa Arab & Inggris</h4>
-      <p>Pembelajaran aktif untuk komunikasi global.</p>
+      <h4>Pembinaan Adab & Akhlak Qurani</h4>
+      <p>Pembinaan karakter dan adab dalam keseharian agar murid memiliki akhlak mulia.</p>
     </div>
     <div class="card">
-      <h4>Pembinaan Adab</h4>
-      <p>Pendidikan karakter berbasis nilai Islam.</p>
+      <h4>3. Penguatan Bahasa (Arab, Inggris, Indonesia & Jawa)</h4>
+      <p>Pembelajaran Bahasa Arab dan Inggris untuk menunjang pemahaman agama dan komunikasi global.</p>
     </div>
     <div class="card">
-      <h4>Akademik Unggul</h4>
-      <p>Integrasi kurikulum nasional dan keislaman.</p>
+      <h4>Skill Digital & Teknologi Informasi</h4>
+      <p>Pembekalan keterampilan teknologi agar murid mampu menggunakan dan menciptakan konten digital secara positif.</p>
     </div>
   </div>
 </section>
@@ -208,13 +651,51 @@ footer {
     <h3>Visi & Misi</h3>
   </div>
   <div class="about">
-    <p><strong>Visi:</strong> Terwujudnya lembaga pendidikan religius dan unggul.</p>
+    <p><strong>Visi:</strong> Terwujudnya lembaga pendidikan yang religius dan unggul dalam membangun generasi qurani yang berakhlak mulia cakap berbahasa berliterasi dan berteknologi</p>
     <br>
     <p><strong>Misi:</strong></p>
-    <p>
-      Mengembangkan pendidikan berbasis syariat, meningkatkan kualitas pembelajaran, 
-      serta mencetak generasi yang unggul dalam Al-Qur’an, bahasa, dan akademik.
+    <p>1.  Mewujudkan sekolah yang religius unggul dan berbudaya qurani<br>
+      2. Mewujudkan pendidikan dan tenaga kependidikan yang lurus dan kokoh berakidah, cinta beribadah dan berakhlakul karimah serta profesional dibidangnya.<br>
+      3. Melahirkan kurikulum yang robbaniyyah, komperhensif, seimbang, bertahap dan berkesinambungan yang merujuk kepada pemahaman dan pengamamalan generasi terbaik <br>
+      4. Menyelenggarakan pembelajaran Al Qur'an dan hadits dalam bingkai siroh nabawiyyah.<br>
+      5. Mencetak lulusan yang cinta Al Qur'an berakhlak mulia, cakap berbahasa arab dan inggris, serta mahir dalam berliterasi dan berteknologi.<br>
+      6. Memberikan service of exellent bagi seluruh warga dan stake holder sekolah.
     </p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="perjalanan">
+  <div class="section-title">
+    <h3>Mulai Perjalanan Anda</h3>
+  </div>
+
+  <div class="timeline">
+
+    <div class="step">
+      <div class="circle">1</div>
+      <h4>Hubungi Admin</h4>
+      <p>Calon wali murid menghubungi admin untuk mendapatkan informasi lengkap.</p>
+    </div>
+
+    <div class="step">
+      <div class="circle">2</div>
+      <h4>Mengisi Form Pendaftaran</h4>
+      <p>Isi formulir pendaftaran secara online dengan data yang valid.</p>
+    </div>
+
+    <div class="step">
+      <div class="circle">3</div>
+      <h4>Tes & Wawancara</h4>
+      <p>Mengikuti seleksi berupa tes kemampuan dan wawancara.</p>
+    </div>
+
+    <div class="step">
+      <div class="circle">4</div>
+      <h4>Pengumuman</h4>
+      <p>Hasil seleksi diumumkan dan calon murid yang lolos dapat melanjutkan proses daftar ulang.</p>
+    </div>
+
   </div>
 </section>
 
@@ -223,12 +704,142 @@ footer {
   <h3>Siap Bergabung Bersama Kami?</h3>
   <p>Segera daftarkan putra Anda di SMP Qur’an Al Wahdah Yogyakarta</p>
   <br>
-  <a href="#" class="btn">Hubungi Kami</a>
+  <a href="#" class="btn secondary">Hubungi Kami</a>
 </div>
+
+<!-- TESTIMONI -->
+<section id="testimoni">
+  <div class="section-title">
+    <h3>Apa Kata Mereka</h3>
+  </div>
+
+  <div class="testimoni-container">
+
+    <div class="testimoni-card">
+      <p>
+        “SMP Qur’an Al Wahdah menjadi jawaban bagi orang tua yang menginginkan pendidikan holistik. Menggabungkan tahfidz, IT, akhlak, dan sirah nabawiyah, sekolah ini membentuk generasi cerdas, berkarakter, dan berakhlak mulia.”
+      </p>
+      <div class="user">
+        <img src="https://photos.app.goo.gl/sPTwe1wqwJXwra4s8">
+        <div>
+          <h4>Dr. Ikhlasul Ardi Nugroho, S.Pd.Si., M.Pd.</h4>
+          <span>Dosen Fakultas Ilmu Pendidikan dan Psikologi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimoni-card">
+      <p>
+        “SMP Qur’an Al Wahdah dinilai mampu membekali anak dengan iman, Al-Qur’an, adab, dan ilmu sejak dini, sekaligus memperhatikan teknologi dan wawasan global untuk kemandirian. Menjadi pilihan tepat bagi orang tua.”
+      </p>
+      <div class="user">
+        <img src="https://photos.app.goo.gl/aWFQLCMxccGRUpr1A">
+        <div>
+          <h4>Tulus Prasetyo, Ns., M.B.A</h4>
+          <span>Ketua Yayasan Pesantren Azzakiyyah</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimoni-card">
+      <p>
+        “SMP Qur’an Al Wahdah menawarkan perpaduan tahfidz, teknologi, dan pembinaan akhlak yang tepat untuk mencetak generasi unggul. Sangat direkomendasikan bagi orang tua yang ingin memberikan pendidikan terbaik bagi putra-putrinya.”
+      </p>
+      <div class="user">
+        <img src="https://photos.app.goo.gl/drzzmr1qFkLBnrhj6">
+        <div>
+          <h4>Dr. Hasbi Nur Prasetya Wisudawan, S.T., М.Т.</h4>
+          <span>Dosen Universitas Islam Indonesia</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<<!-- BERITA -->
+<section id="berita">
+  <div class="section-title">
+    <h3>Berita & Kegiatan</h3>
+  </div>
+
+  <div class="berita-container">
+
+    <!-- Card 1 -->
+    <div class="berita-card">
+      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="">
+      <div class="berita-content">
+        <span class="tag">Kegiatan</span>
+        <h4>Program Tahfidz Intensif Ramadhan</h4>
+        <p>Kegiatan intensif untuk meningkatkan hafalan murid selama bulan Ramadhan.</p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="berita-card">
+      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="">
+      <div class="berita-content">
+        <span class="tag">Berita</span>
+        <h4>Prestasi Murid di Olimpiade Sains</h4>
+        <p>Murid SMP Qur’an Al Wahdah meraih juara dalam ajang olimpiade tingkat kota.</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="berita-card">
+      <img src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1" alt="">
+      <div class="berita-content">
+        <span class="tag">Kegiatan</span>
+        <h4>Rihlah Edukatif ke Museum</h4>
+        <p>Kegiatan pembelajaran luar kelas untuk menambah wawasan murid.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 SMP Qur’an Al Wahdah Yogyakarta</p>
+  <div class="footer-container">
+
+    <!-- Kolom 1 -->
+    <div class="footer-col">
+      <h2>SMP Qur’an Al Wahdah</h2>
+      <p>
+        Lembaga pendidikan Islam yang berkomitmen mencetak <strong>Generasi Qur'ani</strong> yang berakhlak mulia cakap berbahasa berliterasi dan berteknologi
+      </p>
+    </div>
+
+    <!-- Kolom 2 -->
+    <div class="footer-col">
+      <h3>Hubungi Kami</h3>
+      <p>📍 Yogyakarta</p>
+      <p>📞 08xx-xxxx-xxxx</p>
+      <p>✉️ info@alwahdah.sch.id</p>
+
+      <div class="footer-social">
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Kolom 3 -->
+    <div class="footer-col">
+      <h3>Menu</h3>
+      <ul>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#perjalanan">Pendaftaran</a></li>
+        <li><a href="#berita">Berita</a></li>
+        <li><a href="#testimoni">Testimoni</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 SMP Qur’an Al Wahdah Yogyakarta</p>
+  </div>
 </footer>
 
 </body>
