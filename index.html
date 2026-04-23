@@ -23,28 +23,63 @@ body {
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 60px;
   background: white;
   position: fixed;
   width: 100%;
   top: 0;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   z-index: 1;
 }
 
-nav h1 {
-  color: #065f46;
-}
-
-nav a {
-  text-decoration: none;
+/* menu desktop */
+.nav-links a {
   margin-left: 20px;
+  text-decoration: none;
   color: #374151;
-  transition: 0.3s;
 }
 
-nav a:hover {
-  color: #065f46;
+/* hamburger */
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  nav {
+    padding: 20px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+
+  .nav-links a {
+    margin: 15px 0;
+  }
+
+  /* saat aktif */
+  .nav-links.active {
+    max-height: 300px;
+  }
 }
 
 /* HERO */
@@ -550,6 +585,59 @@ section {
   scroll-margin-top: 25px;
 }
 
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px);
+}
+
+/* konten */
+.modal-content {
+  background: white;
+  margin: 8% auto;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 600px;
+  max-height: 80vh;       /* batas tinggi modal */
+  overflow-y: auto;       /* aktifkan scroll */
+  padding-right: 10px;
+  scroll-behavior: smooth;
+  animation: fadeIn 0.4s ease;
+}
+
+/* gambar */
+.modal-content img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* close button */
+.close {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* animasi */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 </style>
 </head>
 
@@ -558,12 +646,20 @@ section {
 <!-- NAVBAR -->
 <nav>
   <h1>SMP Qur'an Al Wahdah</h1>
-  <div>
-    <a href="#tentang">Tentang</a></li>
-    <a href="#program">Program</a></li>
-    <a href="#perjalanan">Pendaftaran</a></li>
-    <a href="#berita">Berita</a></li>
-    <a href="#testimoni">Testimoni</a></li>
+
+  <!-- tombol hamburger -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    ☰
+  </div>
+
+  <!-- menu -->
+  <div class="nav-links" id="navLinks">
+    <a href="#tentang">Tentang</a>
+    <a href="#program">Program</a>
+    <a href="#perjalanan">Pendaftaran</a>
+    <a href="#berita">Berita</a>
+    <a href="#testimoni">Testimoni</a>
+    <a href="#kontak">Kontak</a>
   </div>
 </nav>
 
@@ -585,7 +681,7 @@ section {
     </p>
 
     <div class="hero-buttons">
-      <a href="https://wa.me/6281328690403" class="btn primary">Daftar Sekarang</a>
+      <a href="#perjalanan" class="btn primary">Daftar Sekarang</a>
       <a href="#tentang" class="btn secondary">Pelajari Lebih</a>
     </div>
 
@@ -704,7 +800,7 @@ section {
   <h3>Siap Bergabung Bersama Kami?</h3>
   <p>Segera daftarkan putra Anda di SMP Qur’an Al Wahdah Yogyakarta</p>
   <br>
-  <a href="https://wa.me/6281328690403" class="btn secondary">Hubungi Kami</a>
+  <a href="#" class="btn secondary">Hubungi Kami</a>
 </div>
 
 <!-- TESTIMONI -->
@@ -765,33 +861,34 @@ section {
 
   <div class="berita-container">
 
+
     <!-- Card 1 -->
     <div class="berita-card">
-      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="">
+      <img src="https://wahdah.sch.id/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-23-at-12.39.04-768x578.jpeg" alt="">
       <div class="berita-content">
         <span class="tag">Kegiatan</span>
-        <h4>Program Tahfidz Intensif Ramadhan</h4>
-        <p>Kegiatan intensif untuk meningkatkan hafalan murid selama bulan Ramadhan.</p>
+        <h4>Daurah Qur’an & Bahasa Arab SMP Qur’an Al Wahdah</h4>
+        <p>Daurah Qur’an & Bahasa Arab SMP Qur’an Al Wahdah (5–16 Jan 2026) tingkatkan hafalan, bahasa, dan adab murid.</p>
       </div>
     </div>
 
     <!-- Card 2 -->
     <div class="berita-card">
-      <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="">
+      <img src="https://wahdah.sch.id/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-16-at-09.57.00-1-e1776399563320-768x554.jpeg" alt="">
       <div class="berita-content">
         <span class="tag">Berita</span>
-        <h4>Prestasi Murid di Olimpiade Sains</h4>
-        <p>Murid SMP Qur’an Al Wahdah meraih juara dalam ajang olimpiade tingkat kota.</p>
+        <h4>Kajian Spesial Temu Murid SMP Wahdah Nasional</h4>
+        <p>Kajian LP2AR: Bekal SMA & istiqomah, murid SMP Wahdah se-Indonesia antusias ikuti via Zoom.</p>
       </div>
     </div>
 
     <!-- Card 3 -->
     <div class="berita-card">
-      <img src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1" alt="">
+      <img src="https://wahdah.sch.id/wp-content/uploads/2026/03/photo_2026-03-07_12-19-13-768x578.jpg" alt="">
       <div class="berita-content">
         <span class="tag">Kegiatan</span>
-        <h4>Rihlah Edukatif ke Museum</h4>
-        <p>Kegiatan pembelajaran luar kelas untuk menambah wawasan murid.</p>
+        <h4>Dosen Politeknik Wahdah Islamiyah Isi Kelas Inspirasi</h4>
+        <p>Kelas Inspirasi SMP Qur’an Al Wahdah: jadi generasi jago IT berakhlak Qur’ani bersama Irhamullah, S.Kom., M.Kom.</p>
       </div>
     </div>
 
@@ -814,12 +911,12 @@ section {
     <div class="footer-col">
       <h3>Hubungi Kami</h3>
       <p>📍 Yogyakarta</p>
-      <p>📞 0813-2869-0403</p>
-      <p>✉️ smpquranjogja@gmail.com</p>
+      <p>📞 08xx-xxxx-xxxx</p>
+      <p>✉️ info@alwahdah.sch.id</p>
 
       <div class="footer-social">
-        <a href="https://www.instagram.com/smpquranjogja">Instagram</a>
-        <a href="https://wa.me/6281328690403">WhatsApp</a>
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
       </div>
     </div>
 
@@ -841,6 +938,47 @@ section {
     <p>© 2026 SMP Qur’an Al Wahdah Yogyakarta</p>
   </div>
 </footer>
+
+<!--KODE JAVA-->
+<script>
+function openModal(title, desc, img) {
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("modal-title").innerText = title;
+  document.getElementById("modal-desc").innerText = desc;
+  document.getElementById("modal-img").src = img;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+/* klik luar modal = close */
+window.onclick = function(e) {
+  const modal = document.getElementById("modal");
+  if (e.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function openModal(title, desc, img) {
+  document.getElementById("modal").style.display = "block";
+  document.body.style.overflow = "hidden"; // lock scroll
+
+  document.getElementById("modal-title").innerText = title;
+  document.getElementById("modal-desc").innerText = desc;
+  document.getElementById("modal-img").src = img;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+  document.body.style.overflow = "auto"; // balikin scroll
+}
+
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+</script>
 
 </body>
 </html>
