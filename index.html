@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMP Qur'an Al Wahdah Yogyakarta</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f9fafb;
+  color: #1f2937;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  background: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+nav h1 {
+  color: #065f46;
+}
+
+nav a {
+  text-decoration: none;
+  margin-left: 20px;
+  color: #374151;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #065f46;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  background: linear-gradient(to right, #065f46, #047857);
+  color: white;
+}
+
+.hero h2 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  padding: 12px 28px;
+  background: white;
+  color: #065f46;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #d1fae5;
+}
+
+/* SECTION */
+section {
+  padding: 80px 60px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title h3 {
+  font-size: 28px;
+  color: #065f46;
+}
+
+/* ABOUT */
+.about {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* FEATURES */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  background: #065f46;
+  color: white;
+  padding: 60px 20px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111827;
+  color: #9ca3af;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <h1>Al Wahdah</h1>
+  <div>
+    <a href="#tentang">Tentang</a>
+    <a href="#program">Program</a>
+    <a href="#kontak">Kontak</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h2>SMP Qur’an Al Wahdah Yogyakarta</h2>
+    <p>Mencetak Generasi Qur’ani Beradab, Cerdas, dan Berprestasi</p>
+    <a href="#kontak" class="btn">Daftar Sekarang</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="tentang">
+  <div class="section-title">
+    <h3>Tentang Kami</h3>
+  </div>
+  <div class="about">
+    <p>
+      SMP Qur’an Al Wahdah Yogyakarta adalah lembaga pendidikan Islam yang berkomitmen 
+      membina murid menjadi generasi yang beriman, berakhlak mulia, serta unggul dalam ilmu pengetahuan.
+      Pendidikan diselenggarakan dengan mengintegrasikan kurikulum nasional dan pendidikan diniyah.
+    </p>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="section-title">
+    <h3>Program Unggulan</h3>
+  </div>
+  <div class="features">
+    <div class="card">
+      <h4>Tahfidz Al-Qur’an</h4>
+      <p>Target hafalan yang terukur dengan pembinaan intensif.</p>
+    </div>
+    <div class="card">
+      <h4>Bahasa Arab & Inggris</h4>
+      <p>Pembelajaran aktif untuk komunikasi global.</p>
+    </div>
+    <div class="card">
+      <h4>Pembinaan Adab</h4>
+      <p>Pendidikan karakter berbasis nilai Islam.</p>
+    </div>
+    <div class="card">
+      <h4>Akademik Unggul</h4>
+      <p>Integrasi kurikulum nasional dan keislaman.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VISI MISI -->
+<section>
+  <div class="section-title">
+    <h3>Visi & Misi</h3>
+  </div>
+  <div class="about">
+    <p><strong>Visi:</strong> Terwujudnya lembaga pendidikan religius dan unggul.</p>
+    <br>
+    <p><strong>Misi:</strong></p>
+    <p>
+      Mengembangkan pendidikan berbasis syariat, meningkatkan kualitas pembelajaran, 
+      serta mencetak generasi yang unggul dalam Al-Qur’an, bahasa, dan akademik.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta" id="kontak">
+  <h3>Siap Bergabung Bersama Kami?</h3>
+  <p>Segera daftarkan putra Anda di SMP Qur’an Al Wahdah Yogyakarta</p>
+  <br>
+  <a href="#" class="btn">Hubungi Kami</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 SMP Qur’an Al Wahdah Yogyakarta</p>
+</footer>
+
+</body>
+</html>
