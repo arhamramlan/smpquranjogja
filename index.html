@@ -53,6 +53,8 @@ nav {
     padding: 20px;
   }
 
+  nav         
+
   .menu-toggle {
     display: block;
   }
@@ -175,6 +177,7 @@ nav {
   color: #065f46;
 }
 
+/* HERO STATUS
 .hero-stats {
   display: flex;
   justify-content: center;
@@ -188,6 +191,40 @@ nav {
 
 .hero-stats p {
   font-size: 14px;
+  color: #d1d5db;
+}
+*/
+
+.hero-countdown {
+  margin-top: 40px;
+}
+
+.hero-countdown p {
+  margin-bottom: 15px;
+  color: #d1fae5;
+}
+
+.countdown-box {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.countdown-box div {
+  background: rgba(255,255,255,0.1);
+  padding: 15px 20px;
+  border-radius: 12px;
+  min-width: 70px;
+  backdrop-filter: blur(10px);
+}
+
+.countdown-box h3 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.countdown-box span {
+  font-size: 12px;
   color: #d1d5db;
 }
 
@@ -685,18 +722,26 @@ section {
       <a href="#tentang" class="btn secondary">Pelajari Lebih</a>
     </div>
 
-    <div class="hero-stats">
-      <div>
-        <h3>100+</h3>
-        <p>Murid Aktif</p>
-      </div>
-      <div>
-        <h3>10+</h3>
-        <p>Pengajar</p>
-      </div>
-      <div>
-        <h3>5+</h3>
-        <p>Program Unggulan</p>
+    <div class="hero-countdown">
+      <p>Pendaftaran ditutup dalam:</p>
+
+      <div class="countdown-box">
+        <div>
+          <h3 id="days">00</h3>
+          <span>Hari</span>
+        </div>
+        <div>
+          <h3 id="hours">00</h3>
+          <span>Jam</span>
+        </div>
+        <div>
+          <h3 id="minutes">00</h3>
+          <span>Menit</span>
+        </div>
+        <div>
+          <h3 id="seconds">00</h3>
+          <span>Detik</span>
+        </div>
       </div>
     </div>
   </div>
@@ -816,7 +861,7 @@ section {
         “SMP Qur’an Al Wahdah menjadi jawaban bagi orang tua yang menginginkan pendidikan holistik. Menggabungkan tahfidz, IT, akhlak, dan sirah nabawiyah, sekolah ini membentuk generasi cerdas, berkarakter, dan berakhlak mulia.”
       </p>
       <div class="user">
-        <img src="https://photos.app.goo.gl/sPTwe1wqwJXwra4s8">
+        <img src="izul.jpg">
         <div>
           <h4>Dr. Ikhlasul Ardi Nugroho, S.Pd.Si., M.Pd.</h4>
           <span>Dosen Fakultas Ilmu Pendidikan dan Psikologi</span>
@@ -912,7 +957,7 @@ section {
       <h3>Hubungi Kami</h3>
       <p>📍 Yogyakarta</p>
       <p>📞 0813-2869-0403</p>
-      <p>✉️ info@alwahdah.sch.id</p>
+      <p>✉️ smpquranjogja@gmail.com</p>
 
       <div class="footer-social">
         <a href="https://www.instagram.com/smpquranjogja">Instagram</a>
@@ -941,38 +986,31 @@ section {
 
 <!--KODE JAVA-->
 <script>
-function openModal(title, desc, img) {
-  document.getElementById("modal").style.display = "block";
-  document.getElementById("modal-title").innerText = title;
-  document.getElementById("modal-desc").innerText = desc;
-  document.getElementById("modal-img").src = img;
-}
 
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
+// SET TANGGAL DEADLINE (ubah sesuai kebutuhan)
+const deadline = new Date("June 30, 2026 23:59:59").getTime();
 
-/* klik luar modal = close */
-window.onclick = function(e) {
-  const modal = document.getElementById("modal");
-  if (e.target == modal) {
-    modal.style.display = "none";
+const interval = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = deadline - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  const seconds = Math.floor((distance / 1000) % 60);
+
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+
+  // jika waktu habis
+  if (distance < 0) {
+    clearInterval(interval);
+    document.querySelector(".hero-countdown").innerHTML =
+      "<p>Pendaftaran telah ditutup</p>";
   }
-}
-
-function openModal(title, desc, img) {
-  document.getElementById("modal").style.display = "block";
-  document.body.style.overflow = "hidden"; // lock scroll
-
-  document.getElementById("modal-title").innerText = title;
-  document.getElementById("modal-desc").innerText = desc;
-  document.getElementById("modal-img").src = img;
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-  document.body.style.overflow = "auto"; // balikin scroll
-}
+}, 1000);
 
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
