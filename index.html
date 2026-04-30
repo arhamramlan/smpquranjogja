@@ -630,48 +630,88 @@ section {
 .modal {
   display: none;
   position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
+  z-index: 999;
 }
 
-/* konten */
-.modal-content {
-  background: white;
-  margin: 8% auto;
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 600px;
-  max-height: 80vh;       /* batas tinggi modal */
-  overflow-y: auto;       /* aktifkan scroll */
-  padding-right: 10px;
-  scroll-behavior: smooth;
-  animation: fadeIn 0.4s ease;
+.modal-box {
+  width: 90%;
+  max-width: 700px;
+  height: 90vh;
+  margin: auto;
+  margin-top: 3vh;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  animation: fadeUp 0.4s ease;
 }
 
-/* gambar */
-.modal-content img {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-/* close button */
+/* tombol close */
 .close {
-  float: right;
-  font-size: 24px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
+  z-index: 10;
+}
+
+/* isi scroll */
+#konten-berita {
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* gambar atas */
+.hero-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* tanggal overlay */
+.tanggal {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: #22c55e;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* konten bawah */
+.content {
+  padding: 25px;
+}
+
+.content h1 {
+  font-size: 24px;
+  color: #065f46;
+  margin-bottom: 10px;
+}
+
+.content p {
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 10px;
 }
 
 /* animasi */
-@keyframes fadeIn {
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -945,11 +985,16 @@ section {
 </section>
 
 <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="tutupModal()">&times;</span>
-      <div id="konten-berita"></div>
-    </div>
+  <div class="modal-box">
+
+    <!-- Tombol Close -->
+    <button class="close" onclick="tutupModal()">✕</button>
+
+    <!-- KONTEN DINAMIS -->
+    <div id="konten-berita"></div>
+
   </div>
+</div>
 
 <!-- FOOTER -->
 <footer id="footer">
@@ -1029,7 +1074,10 @@ function toggleMenu() {
 
 //buka berita
 async function bukaBerita(file) {
-  document.getElementById("konten-berita").innerHTML = "Loading...";
+  const modal = document.getElementById("modal");
+  const konten = document.getElementById("konten-berita");
+
+  konten.innerHTML = "Loading...";
 
   let res = await fetch(file);
   let html = await res.text();
@@ -1037,14 +1085,17 @@ async function bukaBerita(file) {
   let parser = new DOMParser();
   let doc = parser.parseFromString(html, "text/html");
 
-  let isi = doc.querySelector(".container").innerHTML;
+  let isi = doc.querySelector(".popup-content").innerHTML;
 
-  document.getElementById("konten-berita").innerHTML = isi;
-  document.getElementById("modal").style.display = "block";
+  konten.innerHTML = isi;
+  modal.style.display = "block";
+
+  document.body.style.overflow = "hidden";
 }
 
 function tutupModal() {
   document.getElementById("modal").style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
 </script>
