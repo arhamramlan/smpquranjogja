@@ -623,6 +623,10 @@ section {
 }
 
 /* MODAL */
+.berita-card {
+  cursor: pointer;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -908,7 +912,7 @@ section {
 
 
     <!-- Card 1 -->
-    <div class="berita-card">
+    <div class="berita-card" onclick="bukaBerita('berita1.html')">
       <img src="https://wahdah.sch.id/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-23-at-12.39.04-768x578.jpeg" alt="">
       <div class="berita-content">
         <span class="tag">Kegiatan</span>
@@ -918,7 +922,7 @@ section {
     </div>
 
     <!-- Card 2 -->
-    <div class="berita-card">
+    <div class="berita-card" onclick="bukaBerita('berita2.html')">
       <img src="https://wahdah.sch.id/wp-content/uploads/2026/04/WhatsApp-Image-2026-04-16-at-09.57.00-1-e1776399563320-768x554.jpeg" alt="">
       <div class="berita-content">
         <span class="tag">Berita</span>
@@ -928,7 +932,7 @@ section {
     </div>
 
     <!-- Card 3 -->
-    <div class="berita-card">
+    <div class="berita-card" onclick="bukaBerita('berita3.html')">
       <img src="https://wahdah.sch.id/wp-content/uploads/2026/03/photo_2026-03-07_12-19-13-768x578.jpg" alt="">
       <div class="berita-content">
         <span class="tag">Kegiatan</span>
@@ -939,6 +943,13 @@ section {
 
   </div>
 </section>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="tutupModal()">&times;</span>
+      <div id="konten-berita"></div>
+    </div>
+  </div>
 
 <!-- FOOTER -->
 <footer id="footer">
@@ -1014,6 +1025,26 @@ const interval = setInterval(() => {
 
 function toggleMenu() {
   document.getElementById("navLinks").classList.toggle("active");
+}
+
+//buka berita
+async function bukaBerita(file) {
+  document.getElementById("konten-berita").innerHTML = "Loading...";
+
+  let res = await fetch(file);
+  let html = await res.text();
+
+  let parser = new DOMParser();
+  let doc = parser.parseFromString(html, "text/html");
+
+  let isi = doc.querySelector(".container").innerHTML;
+
+  document.getElementById("konten-berita").innerHTML = isi;
+  document.getElementById("modal").style.display = "block";
+}
+
+function tutupModal() {
+  document.getElementById("modal").style.display = "none";
 }
 
 </script>
